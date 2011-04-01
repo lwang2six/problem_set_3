@@ -1,4 +1,6 @@
 ProbSet3::Application.routes.draw do
+  root :to => "users#show"
+
   resources :users
   resource :session
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  msg: MyText
+  timestamp: 2011-03-31 18:39:27
+
+two:
+  user_id: 1
+  msg: MyText
+  timestamp: 2011-03-31 18:39:27
