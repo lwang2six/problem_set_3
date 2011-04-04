@@ -10,12 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401013927) do
+ActiveRecord::Schema.define(:version => 20110402160010) do
 
   create_table "chats", :force => true do |t|
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "chats_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "chat_id"
   end
 
   create_table "messages", :force => true do |t|
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110401013927) do
     t.datetime "timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chat_id"
   end
 
   create_table "profiles", :force => true do |t|
@@ -33,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20110401013927) do
     t.text     "bio"
     t.string   "color"
     t.string   "twitter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seats", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

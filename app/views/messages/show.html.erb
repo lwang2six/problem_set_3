@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @message.user_id %>
+</p>
+
+<p>
+  <b>Msg:</b>
+  <%= @message.msg %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_chat_message_path(@user.id, @chat.id,@message) %> |
+<%= link_to 'Back', user_chat_messages_path(@user.id, @chat.id) %>

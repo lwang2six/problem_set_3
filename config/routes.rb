@@ -1,7 +1,14 @@
 ProbSet3::Application.routes.draw do
+
+  resources :seats
+
   root :to => "users#show"
 
-  resources :users
+  resources :users do
+    resources :chats do
+      resources :messages
+    end
+  end
   resource :session
 
   match '/login' => "sessions#new", :as => "login"

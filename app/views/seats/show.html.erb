@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<% if @seat.user %>
+  <p>
+    <strong>User:</strong>
+    <%= @seat.user.email %>
+  </p>
+  <p>
+    <strong>Position:</strong>
+    <%= @seat.position %>
+  </p>
+<% else %>
+  <p>
+    <strong>User:</strong>
+    <em>This seat is open!!</em>
+  </p>
+  <p>
+    <strong>Position:</strong>
+    <%= @seat.position %>
+  </p>
+
+  <%= render "form" %>
+<% end %>
+<br/>
+<%= link_to 'Back to Seating Chart', seats_path %>

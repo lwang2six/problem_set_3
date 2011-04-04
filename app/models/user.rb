@@ -10,6 +10,16 @@ class User < ActiveRecord::Base
                        :presence => true, 
                        :if => :password_required?
   has_one :profile
+  has_one :seat
+  has_many :messages
+  has_and_belongs_to_many :chats
+
+  def self.find_everyone(user)
+    puts 'wee'
+    if not user.nil?
+      self.find(:all, :conditions => ["id NOT IN (?)", user.id])
+    end
+  end
 
   before_save :encrypt_new_password
 

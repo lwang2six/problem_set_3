@@ -2,8 +2,8 @@
 
 one:
   user_id: 1
-  msg: MyText
+  position: 1
 
 two:
   user_id: 1
-  msg: MyText
+  position: 1

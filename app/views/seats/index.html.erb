@@ -1,0 +1,27 @@
+<h1 id="notice"><%= notice %><h1>
+<h1>Seating Chart</h1>
+
+
+<br />
+<br />
+<% if @seats %>
+Front
+<table class="seat">
+  <!--<tr> <% for i in 1..9 %> <th></th><% end %></tr>-->
+  <% for i in 0..3 %>
+    <tr> 
+      <% for j in 0..7%>
+        <% if j == 4%><td></td><% end %>
+          <% if @seats[i*7+j+i].user.nil? %>
+            <td><%= link_to "Empty Seat", @seats[i*7+j+i] %> </td>
+          <%else %>
+            <td><%= link_to "#{@seats[i*7+j+i].user.email}", @seats[i*7+j+i] %> </td>
+          <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+Back
+<% end %>
+<br />
+
