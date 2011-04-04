@@ -9,6 +9,10 @@
     <strong>Position:</strong>
     <%= @seat.position %>
   </p>
+  <br/>
+  <% if not @seat.user == @user %>
+  <%= link_to "Chat with #{@seat.user.email}", new_chat_path(:id => @seat.user.id)%> | 
+  <% end %>
 <% else %>
   <p>
     <strong>User:</strong>
@@ -20,6 +24,7 @@
   </p>
 
   <%= render "form" %>
+  <br/>
 <% end %>
-<br/>
+
 <%= link_to 'Back to Seating Chart', seats_path %>

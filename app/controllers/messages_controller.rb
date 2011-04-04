@@ -52,7 +52,10 @@ class MessagesController < ApplicationController
       if @message.save
         @message.user = @user
         @chat.messages << @message
-        format.html { redirect_to(user_chat_path(@user.id, @chat.id), :notice => 'Message was successfully created.') }
+        if not @chat.users.include?(@user)
+          @chat.users << @user
+        end
+        format.html { redirect_to(chat_path(@chat.id), :notice => 'Message was successfully created.') }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }

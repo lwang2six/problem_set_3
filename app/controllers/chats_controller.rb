@@ -56,8 +56,8 @@ class ChatsController < ApplicationController
         @chat.messages << @message
         @chat.users << @other
         @chat.users << @user 
-        format.html { redirect_to(user_chat_path(@user.id, @chat), :notice => 'Chat was successfully created.') }
-        format.xml  { render :xml => user_chat_path(@user.id,@chat), :status => :created, :location => @chat }
+        format.html { redirect_to(chat_path(@chat), :notice => 'Chat was successfully created.') }
+        format.xml  { render :xml => chat_path(@chat), :status => :created, :location => @chat }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @chat.errors, :status => :unprocessable_entity }
