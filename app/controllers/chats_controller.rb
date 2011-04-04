@@ -1,12 +1,12 @@
 class ChatsController < ApplicationController
+  before_filter :authenticate
   # GET /chats
   # GET /chats.xml
   def index
     authenticate
     @user = current_user
-    @users = User.find_everyone(@user.id)
-    @chats = Chat.all
-    #@chats = Chat.find_all_by_id(UserChat.find_all_by_user(current_user))
+    @users = User.find_everyone(@user)
+    @chats = @user.chats
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,10 @@ class ChatsController < ApplicationController
   # GET /chats/1.xml
   def show
     @chat = Chat.find(params[:id])
+    @messages = Message.find_all_by_chat_id(@chat)
+    @message = Message.new
     @user = current_user
+ 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @chat }
@@ -38,38 +41,25 @@ class ChatsController < ApplicationController
     end
   end
 
-  # GET /chats/1/edit
-  def edit
-    @chat = Chat.find(params[:id])
-  end
-
   # POST /chats
   # POST /chats.xml
   def create
     @chat = Chat.new(params[:chat])
+    @user = current_user
+   
+    @other = User.find( params[:user2])
 
     respond_to do |format|
       if @chat.save
-        format.html { redirect_to(@chat, :notice => 'Chat was successfully created.') }
-        format.xml  { render :xml => @chat, :status => :created, :location => @chat }
+        @message = Message.create(:msg => params[:message])
+        @message.user = @user
+        @chat.messages << @message
+        @chat.users << @other
+        @chat.users << @user 
+        format.html { redirect_to(user_chat_path(@user.id, @chat), :notice => 'Chat was successfully created.') }
+        format.xml  { render :xml => user_chat_path(@user.id,@chat), :status => :created, :location => @chat }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @chat.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /chats/1
-  # PUT /chats/1.xml
-  def update
-    @chat = Chat.find(params[:id])
-
-    respond_to do |format|
-      if @chat.update_attributes(params[:chat])
-        format.html { redirect_to(@chat, :notice => 'Chat was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @chat.errors, :status => :unprocessable_entity }
       end
     end
