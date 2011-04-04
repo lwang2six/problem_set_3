@@ -4,10 +4,10 @@ ProbSet3::Application.routes.draw do
 
   root :to => "users#show"
 
-  resources :users do
-    resources :chats do
-      resources :messages
-    end
+  resources :users
+
+  resources :chats do
+    resources :messages
   end
   resource :session
 

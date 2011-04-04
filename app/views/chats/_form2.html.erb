@@ -1,4 +1,4 @@
-<%= form_for([@user, @chat]) do |f| %>
+<%= form_for([@chat, @message]) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -10,11 +10,10 @@
       </ul>
     </div>
   <% end %>
-
-      <div class="field">
-          <label>Message to <%= @other.email %>:</label><br/>
-        <textarea cols="40" id="message_msg" name="message[msg]" rows="20"></textarea>
-      </div>
+  <div class="field">
+    <%= f.label :msg %><br />
+    <%= f.text_area :msg %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

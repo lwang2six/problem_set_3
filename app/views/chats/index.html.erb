@@ -1,5 +1,4 @@
 <h1>Listing chats</h1>
-
 <table>
   <tr>
     <th></th>
@@ -9,19 +8,18 @@
 
 <% @chats.each do |chat| %>
   <tr>
-    <td><%= chat.id %> <td>
-    <td><%= link_to 'Show', user_chat_path(@user.id, chat) %></td>
-    <td><%= link_to 'Edit', edit_user_chat_path(@user.id, chat) %></td>
-    <td><%= link_to 'Destroy', [@user, chat], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= chat.time %> <td>
+    <td><%= link_to 'Show', chat_path(chat) %></td>
+    <td><%= link_to 'Destroy', chat, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <ul>
 <% @users.each do |user| %>
-  <li><%= link_to "#{user.id} #{user.email}", new_user_chat_path %></li>
+  <li><%= link_to "#{user.id} #{user.email}", new_chat_path(:id => user.id)%></li>
 <% end %>
 </ul>
 <br />
 
-<%= link_to 'New Chat', new_user_chat_path %>
+<%= link_to 'New Chat', new_chat_path %>

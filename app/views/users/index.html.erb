@@ -3,7 +3,7 @@
 <% if @users %>
 <ul>
 <% @users.each do |user| %>
-  <li><%= link_to "#{user.id} #{user.email}", new_user_chat_path(@user, :id => user.id) %></li>
+  <li><%= link_to "#{user.id} #{user.email}", new_chat_path(:id => user.id) %></li>
 <% end %>
 </ul>
 <% end %>
