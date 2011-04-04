@@ -3,11 +3,11 @@
 <% if @seat.user %>
   <p>
     <strong>User:</strong>
-    <%= @seat.user.email %>
+    <%= link_to "#{@seat.user.email}", user_path(@seat.user) %>
   </p>
   <p>
     <strong>Position:</strong>
-    <%= @seat.position %>
+    <%= @seat.place %>
   </p>
   <br/>
   <% if not @seat.user == @user %>
@@ -20,7 +20,7 @@
   </p>
   <p>
     <strong>Position:</strong>
-    <%= @seat.position %>
+    <%= @seat.place %>
   </p>
 
   <%= render "form" %>

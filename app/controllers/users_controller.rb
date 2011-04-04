@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       else
         @user = current_user
+        @chats = @user.chats
       end
     rescue
       redirect_to users_path, :notice => 'No such user'

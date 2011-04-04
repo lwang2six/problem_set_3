@@ -3,3 +3,25 @@
 <div>
 email: <%= @user.email %>
 </div>
+
+<div>
+sits: <%= @user.seat.place %>
+</div>
+
+<% if @user.id == session[:user_id] %>
+   <h3>Your Past Chats</h3>
+   <ul>
+   <% @user.chats.each do |chat| %>
+    <% if chat.users.count > 1 %>
+     <li>
+       <%= link_to "#{chat.time}", chat_path(chat) %> with
+       <% chat.users.each do |user| %>
+         <% if user.id.to_i != session[:user_id].to_i %>
+           <%= user.email %>
+         <% end %>
+       <% end %>
+     </li>
+    <% end %>
+   <% end %>
+   </ul>
+<% end %>
