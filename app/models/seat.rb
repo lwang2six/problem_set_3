@@ -12,7 +12,7 @@ class Seat < ActiveRecord::Base
   end
 
   def claimed_by?(claimer)
-    return flase unless claimer.is_a? User
+    return false unless claimer.is_a? User
     user == claimer
   end
 end
