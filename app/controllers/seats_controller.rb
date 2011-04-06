@@ -23,7 +23,6 @@ class SeatsController < ApplicationController
   def show
     redirect = false
     @seat = Seat.find_by_position(params[:id])
-    @user = current_user
     if @seat.nil?
       redirect = true
     end

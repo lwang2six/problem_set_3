@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
+users
+<ul>
+<% @chat.users.each do |user| %>
+  <li><%= user.email %> </li>
+<% end %>
+</ul>
 <h1>Messages</h1>
 <% @chat.messages.each do |message| %>
  <p><%= message.user.email %>: <%= message.msg %></p>
 <% end %>
 
 <%= render 'form2' %>
-<%= link_to 'Back', chats_path %>
+

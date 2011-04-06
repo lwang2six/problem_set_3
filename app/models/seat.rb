@@ -10,4 +10,9 @@ class Seat < ActiveRecord::Base
       "Have not pick a seat yet!"
     end
   end
+
+  def claimed_by?(claimer)
+    return flase unless claimer.is_a? User
+    user == claimer
+  end
 end

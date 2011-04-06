@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   before_filter :authenticate
+
+=begin
   # GET /messages
   # GET /messages.xml
   def index
@@ -41,7 +43,7 @@ class MessagesController < ApplicationController
   def edit
     @message = Message.find(params[:id])
   end
-
+=end
   # POST /messages
   # POST /messages.xml
   def create

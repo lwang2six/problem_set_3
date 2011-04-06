@@ -10,7 +10,7 @@
     <%= @seat.place %>
   </p>
   <br/>
-  <% if not @seat.user == @user %>
+  <% if not @seat.claimed_by? current_user %>
   <%= link_to "Chat with #{@seat.user.email}", new_chat_path(:id => @seat.user.id)%> | 
   <% end %>
 <% else %>

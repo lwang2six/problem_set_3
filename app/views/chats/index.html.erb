@@ -1,25 +1,34 @@
-<h1>Listing chats</h1>
+<h1>List of your on going chats</h1>
+
+<div>
 <table>
   <tr>
-    <th></th>
+    <th>Chats</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @chats.each do |chat| %>
   <tr>
-    <td><%= chat.time %> <td>
-    <td><%= link_to 'Show', chat_path(chat) %></td>
-    <td><%= link_to 'Destroy', chat, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to "#{chat.time}", chat_path(chat) %></td>
+    <td>
+      with 
+        <% chat.users.each do |u| %>
+          <% if u != current_user %><%= u.email %><% end %>
+        <% end %>  
+    </td>
+    <td><%= link_to 'Delete', chat, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
+</div>
 
+<div>
 <ul>
 <% @users.each do |user| %>
   <li><%= link_to "#{user.id} #{user.email}", new_chat_path(:id => user.id)%></li>
 <% end %>
 </ul>
 <br />
-
+</div>
 <%= link_to 'New Chat', new_chat_path %>

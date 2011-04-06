@@ -1,27 +1,28 @@
-<h1>User # <%= @user.id %></h1>
+<h1><% if @user == current_user %>Your Home<% else %>User # <%= @user.id %><% end %></h1>
 
 <div>
-email: <%= @user.email %>
+email: <%= @user.email %> <%if @user == current_user %><%= link_to "change email?", edit_user_path(current_user) %><% end %>
 </div>
 
 <div>
-sits: <%= @user.seat.place %>
+sits: <%= @user.seat.place %> <% if @user == current_user %><%= link_to "change seats?", seats_path %><% end %>
 </div>
-
-<% if @user.id == session[:user_id] %>
+<% if @user == current_user %>
    <h3>Your Past Chats</h3>
    <ul>
    <% @user.chats.each do |chat| %>
-    <% if chat.users.count > 1 %>
      <li>
-       <%= link_to "#{chat.time}", chat_path(chat) %> with
+       <%= link_to "#{chat.time}", chat_path(chat) %> 
+       <% if chat.users.count > 1 %>
+       with
        <% chat.users.each do |user| %>
-         <% if user.id.to_i != session[:user_id].to_i %>
+         <% if user != current_user %>
            <%= user.email %>
          <% end %>
        <% end %>
+       <% end %>
+       <%= link_to 'Kill it?', @chat, :confirm => 'Are you sure you want to kill the chat?', :method => :delete %></td>
      </li>
-    <% end %>
    <% end %>
    </ul>
 <% end %>

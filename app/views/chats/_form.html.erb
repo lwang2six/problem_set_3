@@ -1,21 +1,31 @@
 <%= form_for(@chat) do |f| %>
-  <% if @message.errors.any? %>
+  <% if @chat.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this message from being saved:</h2>
 
       <ul>
-      <% @message.errors.full_messages.each do |msg| %>
+      <% @chat.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-        <input id="other_guy" name="user2" size="30" type="hidden" value="<%= @other.id %>">
+     
+  <% if @other %>   
+      <input id="other_guy" name="user2" size="30" type="hidden" value="<%= @other.id %>">
       <div class="field">
-          <label>Message to <%= @other.email %>:</label><br/>
+        <label>Message to <%= @other.email %>:</label><br/>
+  <% else %>
+      <div class="field">
+        <label>User</label>
+        <input id="other_guy" name="user2" size="30" type="text" value="">
+      </div>
+      <div class="field">
+        <label>Message</label>
         <textarea cols="40" id="message_msg" name="message" rows="20"></textarea>
       </div>
+  <% end %>
   <div class="actions">
-    <%= f.submit 'Sent Message' %>
+    <%= submit_or_cancel(f, "Sent Message") %>
   </div>
 <% end %>

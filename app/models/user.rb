@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :chats
 
   def self.find_everyone(user)
-    puts 'wee'
     if not user.nil?
       self.find(:all, :conditions => ["id NOT IN (?)", user.id])
     end
