@@ -1,4 +1,5 @@
 <h1>List of your on going chats</h1>
+<% if @chats.count > 0 %>
 <p>
 <table>
   <tr>
@@ -22,6 +23,7 @@
 </table>
 </p>
 <br/>
+<% end %>
 <p>
   <% if @users.count > 1 %>
     <h3>Select users to chat with</h3>
@@ -31,7 +33,7 @@
       <% end %>
     </ul>
   <% else %>
-   <h3>Sorry you dont have anyone to chat with but yourself</h3>
+   <h3>Sorry you dont have anyone to chat with but yourself!!! =[</h3>
   <% end %>
   <br />
 </p>
