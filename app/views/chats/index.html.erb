@@ -23,12 +23,16 @@
 </p>
 <br/>
 <p>
-<h3>Select users to chat with</h3>
-<ul>
-<% @users.each do |user| %>
-  <li><%= link_to "#{user.email}", new_chat_path(:id => user.id)%></li>
-<% end %>
-</ul>
-<br />
+  <% if @users.count > 1 %>
+    <h3>Select users to chat with</h3>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to "#{user.email}", new_chat_path(:id => user.id)%></li>
+      <% end %>
+    </ul>
+  <% else %>
+   <h3>Sorry you dont have anyone to chat with but yourself</h3>
+  <% end %>
+  <br />
 </p>
 <%= link_to 'New Chat', new_chat_path %>
