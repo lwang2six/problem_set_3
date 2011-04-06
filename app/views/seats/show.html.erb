@@ -11,6 +11,7 @@
   <% if not @seat.claimed_by? current_user %>
   <%= link_to "Chat with #{@seat.user.email}", new_chat_path(:id => @seat.user.id)%> | 
   <% end %>
+  <%= link_to 'Back to Seating Chart', seats_path %>
 <% else %>
   <p>
     <strong>User:</strong>
@@ -24,5 +25,3 @@
   <%= render "form" %>
   <br/>
 <% end %>
-
-<%= link_to 'Back to Seating Chart', seats_path %>
