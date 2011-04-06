@@ -1,8 +1,8 @@
 <h1 id="notice"><%= notice %><h1>
-<h1>Seating Chart</h1>
+<h1 class="center">Seating Chart</h1>
 <% if @seats %>
 <div class="seat">
-Front
+Front of class
 </div>
 <table class="seat">
   <% for i in 0..3 %>
@@ -19,7 +19,7 @@ Front
   <% end %>
 </table>
 <div class="seat">
-Back
+Back of class
 </div>
 <% end %>
 <br />

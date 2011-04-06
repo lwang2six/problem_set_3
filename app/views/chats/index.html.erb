@@ -1,6 +1,5 @@
 <h1>List of your on going chats</h1>
-
-<div>
+<p>
 <table>
   <tr>
     <th>Chats</th>
@@ -21,14 +20,15 @@
   </tr>
 <% end %>
 </table>
-</div>
-
-<div>
+</p>
+<br/>
+<p>
+<h3>Select users to chat with</h3>
 <ul>
 <% @users.each do |user| %>
-  <li><%= link_to "#{user.id} #{user.email}", new_chat_path(:id => user.id)%></li>
+  <li><%= link_to "#{user.email}", new_chat_path(:id => user.id)%></li>
 <% end %>
 </ul>
 <br />
-</div>
+</p>
 <%= link_to 'New Chat', new_chat_path %>

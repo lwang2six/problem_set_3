@@ -12,7 +12,7 @@
   <% end %>
      
   <% if @other %>   
-      <input id="other_guy" name="user2" size="30" type="hidden" value="<%= @other.id %>">
+      <input id="other_guy" name="user2" size="30" type="hidden" value="<%= @other.email %>">
       <div class="field">
         <label>Message to <%= @other.email %>:</label><br/>
   <% else %>
@@ -22,9 +22,10 @@
       </div>
       <div class="field">
         <label>Message</label>
-        <textarea cols="40" id="message_msg" name="message" rows="20"></textarea>
-      </div>
   <% end %>
+    <textarea cols="40" id="message_msg" name="message" rows="20"></textarea>
+  </div>
+
   <div class="actions">
     <%= submit_or_cancel(f, "Sent Message") %>
   </div>

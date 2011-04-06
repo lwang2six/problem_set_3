@@ -5,7 +5,12 @@ email: <%= @user.email %> <%if @user == current_user %><%= link_to "change email
 </div>
 
 <div>
-sits: <%= @user.seat.place %> <% if @user == current_user %><%= link_to "change seats?", seats_path %><% end %>
+sitting: 
+     <% if @user.seat %>
+       <%= @user.seat.place %> <% if @user == current_user %><%= link_to "change seats?", seats_path %><% end %>
+     <% else %>
+      up in the clouds <% if @user == current_user %><%= link_to "Pick a seats?", seats_path %><% end %>
+     <% end %>
 </div>
 <% if @user == current_user %>
    <h3>Your Past Chats</h3>

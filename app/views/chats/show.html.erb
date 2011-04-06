@@ -1,14 +1,19 @@
-<p id="notice"><%= notice %></p>
-users
+<header>
+<meta http-equiv="refresh" content="35">
+</header>
+Available chat users:
 <ul>
 <% @chat.users.each do |user| %>
   <li><%= user.email %> </li>
 <% end %>
+<p>
 </ul>
 <h1>Messages</h1>
 <% @chat.messages.each do |message| %>
  <p><%= message.user.email %>: <%= message.msg %></p>
 <% end %>
-
+</p>
+<p>
+<hr/>
 <%= render 'form2' %>
-
+</p>
