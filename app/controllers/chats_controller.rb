@@ -59,8 +59,10 @@ class ChatsController < ApplicationController
           @message = Message.create(:msg => params[:message])
           @message.user = @user
           @chat.messages << @message
-          @chat.users << @other
           @chat.users << @user 
+          if not @chat.users.include? @other
+            @chat.users << @other
+          end
           format.html { redirect_to(chat_path(@chat), :notice => 'Chat was successfully created.') }
           format.xml  { render :xml => chat_path(@chat), :status => :created, :location => @chat }
         else

@@ -21,7 +21,12 @@
     <strong>Position:</strong>
     <%= @seat.place %>
   </p>
-
-  <%= render "form" %>
+  
+  <% if current_user %>
+    <%= render "form" %>
+  <% else %>
+    <br/>
+    <%= link_to 'Back to Seating Chart', seats_path %>
+  <% end %>
   <br/>
 <% end %>

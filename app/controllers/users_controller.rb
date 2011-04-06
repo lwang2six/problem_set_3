@@ -1,10 +1,30 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [ :show, :edit, :update]
+  before_filter :authenticate, :only => [:edit, :update]
 
   def index
     @user = current_user
     @users = User.find_everyone(@user)
   end
+
+  def home
+    if current_user
+      @user = current_user
+      @chats = @user.chats
+      render :action => 'show'
+    else
+      @seats = Seat.order("position").all
+      if @seats.count == 0
+        for i in 1..32
+          @seat = Seat.create(:position => i)
+        end
+
+        redirect_to root_path
+      else
+        render :action=> 'seats/index'
+      end
+    end
+  end
+
   def show
     begin 
       if params[:id]

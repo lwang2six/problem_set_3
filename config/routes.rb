@@ -2,7 +2,7 @@ ProbSet3::Application.routes.draw do
 
   resources :seats
 
-  root :to => "users#show"
+  root :to => "users#home"
 
   resources :users
 

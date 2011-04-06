@@ -13,6 +13,8 @@ sitting:
      <% end %>
 </div>
 <% if @user == current_user %>
+  <%= link_to 'Start to Chat?', chats_path %> 
+  <% if @user.chats.count > 0 %>
    <h3>Your Past Chats</h3>
    <ul>
    <% @user.chats.each do |chat| %>
@@ -26,8 +28,8 @@ sitting:
          <% end %>
        <% end %>
        <% end %>
-       <%= link_to 'Kill it?', @chat, :confirm => 'Are you sure you want to kill the chat?', :method => :delete %></td>
      </li>
    <% end %>
    </ul>
+  <% end %>
 <% end %>
