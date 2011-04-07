@@ -21,7 +21,10 @@ class ChatsController < ApplicationController
     @messages = Message.find_all_by_chat_id(@chat)
     @message = Message.new
     @user = current_user
- 
+    if session[:message_error]
+      @message.errors.add(:message, session[:message_error])
+      session[:message_error] = nil
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @chat }
@@ -71,6 +74,9 @@ class ChatsController < ApplicationController
         end
       else
         @chat.errors.add(:user, "cannot be empty")
+        if params[:message] == ''
+          @chat.errors.add(:message, "cannot be empty")
+        end
         format.html { render :action => "new" }
         format.xml  { render :xml => @chat.errors, :status => :unprocessable_entity }
       end

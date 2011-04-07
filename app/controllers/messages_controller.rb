@@ -59,7 +59,8 @@ class MessagesController < ApplicationController
         end
         format.html { redirect_to(chat_path(@chat.id), :notice => 'Message was successfully created.') }
       else
-        format.html { render :action => "new" }
+        session[:message_error] = "cannot be empty"
+        format.html { redirect_to(chat_path(@chat)) }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
     end

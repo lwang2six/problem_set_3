@@ -13,7 +13,7 @@ sitting:
      <% end %>
 </div>
 <% if @user == current_user %>
-  <%= link_to 'Start to Chat?', chats_path %> 
+  <%= link_to 'Start Chatting?', chats_path %> 
   <% if @user.chats.count > 0 %>
    <h3>Your Past Chats</h3>
    <ul>
